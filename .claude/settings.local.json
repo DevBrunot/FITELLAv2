@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install *)",
+      "Read(//usr/local/bin/**)",
+      "Read(//Users/brunotavares/.nvm/versions/**)",
+      "Bash(ls /opt/homebrew/bin/ 2>/dev/null | grep -E \"node|npm|bun|pnpm\" ; ls /usr/local/bin/ 2>/dev/null | grep -E \"node|npm|bun\" ; echo \"PATH: $PATH\")",
+      "Bash(ls /opt/homebrew/bin/ | grep -E \"^\\(node|npm|bun|pnpm|yarn\\)\" 2>/dev/null; ls /opt/pkg/env/active/bin/ | grep -E \"^\\(node|npm|bun\\)\" 2>/dev/null)",
+      "Bash(find /opt /usr -name \"node\" -type f 2>/dev/null | head -5; find ~/Library -name \"node\" -type f 2>/dev/null | head -3)"
+    ]
+  }
+}

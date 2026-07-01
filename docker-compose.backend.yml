@@ -1,0 +1,43 @@
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: fitela-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: fitela
+      POSTGRES_PASSWORD: fitela
+      POSTGRES_DB: fitela
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U fitela -d fitela"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  api:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+      target: dev
+      network: host
+    container_name: fitela-api
+    restart: unless-stopped
+    env_file:
+      - ./backend/.env
+    environment:
+      JWT_SECRET: dev_secret_change_me
+      NODE_ENV: development
+      PORT: 3000
+      FRONTEND_URL: http://localhost:5173
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./backend:/app
+      - api_node_modules:/app/node_modules
+
+volumes:
+  postgres_data:
+  api_node_modules:
