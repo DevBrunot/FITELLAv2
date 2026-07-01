@@ -30,6 +30,7 @@ import { NotificationsModule } from './modules/notifications/notifications.modul
 import { StudentWorkoutsModule } from './modules/student-workouts/student-workouts.module';
 import { DashboardModule } from './modules/dashboard/dashboard.module';
 import { getDatabaseSsl } from './config/database';
+import { HealthController } from './health.controller';
 
 @Module({
   imports: [
@@ -47,8 +48,10 @@ import { getDatabaseSsl } from './config/database';
             PersonalTrainer, Student, Exercise, Workout, WorkoutExercise,
             Anamnesis, RegistrationLink, WorkoutExecution, WorkoutFeedback, Notification,
           ],
-          // ⚠️  synchronize: true apenas em desenvolvimento. Produção: use migrations.
-          synchronize: config.get('NODE_ENV') !== 'production',
+          // Produção: DB_SYNC=true no 1º deploy (Neon vazio); depois remova ou defina false.
+          synchronize:
+            config.get('NODE_ENV') !== 'production'
+            || config.get('DB_SYNC') === 'true',
           logging: config.get('NODE_ENV') === 'development',
         };
       },
@@ -72,5 +75,6 @@ import { getDatabaseSsl } from './config/database';
     StudentWorkoutsModule,
     DashboardModule,
   ],
+  controllers: [HealthController],
 })
 export class AppModule {}

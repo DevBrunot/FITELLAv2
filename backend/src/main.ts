@@ -2,11 +2,11 @@
 import { NestFactory } from '@nestjs/core';
 import { ValidationPipe } from '@nestjs/common';
 import { AppModule } from './app.module';
+import { parseCorsOrigins } from './config/app-url';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  // Global validation pipe — strips unknown fields and validates DTOs
   app.useGlobalPipes(
     new ValidationPipe({
       whitelist: true,
@@ -15,9 +15,8 @@ async function bootstrap() {
     }),
   );
 
-  const frontendUrl = process.env.FRONTEND_URL ?? 'http://localhost:5173';
   app.enableCors({
-    origin: frontendUrl,
+    origin: parseCorsOrigins(process.env.FRONTEND_URL, 'http://localhost:5173'),
     credentials: true,
   });
 
