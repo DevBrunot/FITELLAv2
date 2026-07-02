@@ -28,7 +28,6 @@ services:
   - type: web
     name: fitela-web
     runtime: static
-    plan: free
     rootDir: frontend
     buildCommand: yarn install --frozen-lockfile && yarn build
     staticPublishPath: ./frontend/dist
