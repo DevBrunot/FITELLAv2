@@ -30,34 +30,34 @@ export class Exercise {
   @Column({ nullable: true, type: 'text' })
   description: string | null;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   youtubeUrl: string | null;
 
   @Column({ type: 'enum', enum: VideoType, nullable: true })
   videoType: VideoType | null;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   videoUrl: string | null;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   videoId: string | null;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   thumbnail: string | null;
 
   /** Duration in seconds (extracted from YouTube or set manually) */
-  @Column({ nullable: true })
-  durationSeconds: number;
+  @Column({ type: 'int', nullable: true })
+  durationSeconds: number | null;
 
   @Column({ type: 'enum', enum: ExerciseCategory, nullable: true })
-  category: ExerciseCategory;
+  category: ExerciseCategory | null;
 
   /** If true, cannot be used in gestational (pregnancy) workouts */
   @Column({ default: false })
   postPartumOnly: boolean;
 
-  @Column({ nullable: true })
-  personalTrainerId: string;
+  @Column({ type: 'uuid', nullable: true })
+  personalTrainerId: string | null;
 
   @ManyToOne(() => PersonalTrainer, (pt) => pt.exercises, { nullable: true })
   @JoinColumn({ name: 'personalTrainerId' })

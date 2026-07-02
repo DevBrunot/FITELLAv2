@@ -29,7 +29,7 @@ import { FeedbackModule } from './modules/feedback/feedback.module';
 import { NotificationsModule } from './modules/notifications/notifications.module';
 import { StudentWorkoutsModule } from './modules/student-workouts/student-workouts.module';
 import { DashboardModule } from './modules/dashboard/dashboard.module';
-import { getDatabaseSsl } from './config/database';
+import { getDatabaseSsl, normalizeDatabaseUrl } from './config/database';
 import { HealthController } from './health.controller';
 
 @Module({
@@ -39,7 +39,7 @@ import { HealthController } from './health.controller';
     TypeOrmModule.forRootAsync({
       inject: [ConfigService],
       useFactory: (config: ConfigService) => {
-        const url = config.get<string>('DATABASE_URL');
+        const url = normalizeDatabaseUrl(config.get<string>('DATABASE_URL'));
         return {
           type: 'postgres',
           url,
