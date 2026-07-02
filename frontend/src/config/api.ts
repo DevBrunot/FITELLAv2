@@ -1,3 +1,5 @@
+/// <reference types="vite/client" />
+
 function normalizeApiBaseUrl(raw: string | undefined): string {
   const base = (raw ?? 'http://localhost:3000').trim()
   if (base.startsWith('http://') || base.startsWith('https://')) {
