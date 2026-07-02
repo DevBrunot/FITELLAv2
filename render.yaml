@@ -1,6 +1,5 @@
 # Blueprint Render — https://render.com/docs/blueprint-spec
-# Conecte o repo no Render: New > Blueprint > selecione FITELLAv2
-# Defina DATABASE_URL (Neon) e JWT_SECRET no painel antes do primeiro deploy.
+# No painel, defina DATABASE_URL (Neon) quando solicitado.
 
 services:
   - type: web
@@ -24,7 +23,7 @@ services:
         fromService:
           type: web
           name: fitela-web
-          property: host
+          envVarKey: RENDER_EXTERNAL_URL
 
   - type: web
     name: fitela-web
@@ -32,7 +31,7 @@ services:
     plan: free
     rootDir: frontend
     buildCommand: yarn install --frozen-lockfile && yarn build
-    staticPublishPath: dist
+    staticPublishPath: ./frontend/dist
     routes:
       - type: rewrite
         source: /*
@@ -42,4 +41,4 @@ services:
         fromService:
           type: web
           name: fitela-api
-          property: host
+          envVarKey: RENDER_EXTERNAL_URL
