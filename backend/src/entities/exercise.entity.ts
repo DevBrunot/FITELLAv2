@@ -28,22 +28,22 @@ export class Exercise {
   name: string;
 
   @Column({ nullable: true, type: 'text' })
-  description: string;
+  description: string | null;
 
   @Column({ nullable: true })
-  youtubeUrl: string;
+  youtubeUrl: string | null;
 
   @Column({ type: 'enum', enum: VideoType, nullable: true })
-  videoType: VideoType;
+  videoType: VideoType | null;
 
   @Column({ nullable: true })
-  videoUrl: string;
+  videoUrl: string | null;
 
   @Column({ nullable: true })
-  videoId: string;
+  videoId: string | null;
 
   @Column({ nullable: true })
-  thumbnail: string;
+  thumbnail: string | null;
 
   /** Duration in seconds (extracted from YouTube or set manually) */
   @Column({ nullable: true })
