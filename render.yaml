@@ -30,7 +30,7 @@ services:
     runtime: static
     rootDir: frontend
     buildCommand: yarn install --frozen-lockfile && yarn build
-    staticPublishPath: ./frontend/dist
+    staticPublishPath: dist
     routes:
       - type: rewrite
         source: /*
