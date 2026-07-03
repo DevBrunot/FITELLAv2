@@ -48,13 +48,13 @@ export function Students() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="page-title">Alunas</h1>
-          <p className="text-gray-500 text-sm mt-1">{data?.total ?? 0} alunas cadastradas</p>
+          <p className="text-muted-foreground text-sm mt-1">{data?.total ?? 0} alunas cadastradas</p>
         </div>
       </div>
 
       {/* Search */}
       <div className="relative">
-        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
+        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" strokeWidth={1.5} />
         <input
           className="input pl-9"
           placeholder="Buscar por nome ou e-mail…"
@@ -65,7 +65,7 @@ export function Students() {
 
       {/* List */}
       {filtered.length === 0 ? (
-        <Card padding="md" className="text-center text-gray-400 py-12">
+        <Card padding="md" className="text-center text-muted-foreground py-12">
           Nenhuma aluna encontrada.
         </Card>
       ) : (
@@ -74,15 +74,15 @@ export function Students() {
             const status = STATUS_MAP[student.status]
             return (
               <Card key={student.id} padding="md" className="flex items-center gap-4">
-                <div className="h-10 w-10 shrink-0 rounded-full bg-primary-100 flex items-center justify-center text-primary-700 font-semibold">
+                <div className="h-10 w-10 shrink-0 rounded-full bg-accent flex items-center justify-center text-accent-foreground font-semibold">
                   {student.name.charAt(0)}
                 </div>
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2">
-                    <span className="font-medium text-gray-900">{student.name}</span>
+                    <span className="font-medium text-foreground">{student.name}</span>
                     <Badge variant={status.variant}>{status.label}</Badge>
                   </div>
-                  <p className="text-sm text-gray-500 truncate">{student.email}</p>
+                  <p className="text-sm text-muted-foreground truncate">{student.email}</p>
                 </div>
                 <div className="flex items-center gap-2 shrink-0">
                   {student.status === 'pending' && (
@@ -90,7 +90,7 @@ export function Students() {
                       <Button
                         variant="ghost"
                         size="sm"
-                        className="text-green-600 hover:bg-green-50"
+                        className="text-secondary hover:bg-secondary/10"
                         loading={approveMutation.isPending && approveMutation.variables === student.id}
                         onClick={() => approveMutation.mutate(student.id)}
                       >
@@ -99,7 +99,7 @@ export function Students() {
                       <Button
                         variant="ghost"
                         size="sm"
-                        className="text-red-500 hover:bg-red-50"
+                        className="text-destructive hover:bg-destructive/10"
                         loading={rejectMutation.isPending && rejectMutation.variables === student.id}
                         onClick={() => rejectMutation.mutate(student.id)}
                       >

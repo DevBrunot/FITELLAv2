@@ -38,14 +38,14 @@ export function TrainerLogin() {
   })
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-primary-50 to-white flex items-center justify-center p-4">
+    <div className="min-h-screen bg-background flex items-center justify-center p-4">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
-          <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-primary-600 mb-4">
-            <Heart className="h-6 w-6 text-white fill-white" />
+          <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-primary mb-4">
+            <Heart className="h-6 w-6 text-primary-foreground fill-primary-foreground" strokeWidth={1.5} />
           </div>
-          <h1 className="text-2xl font-bold text-gray-900">Entrar como Personal</h1>
-          <p className="text-gray-500 text-sm mt-1">Acesse sua plataforma de gestão</p>
+          <h1 className="font-display text-2xl text-foreground">Entrar como Personal</h1>
+          <p className="text-muted-foreground text-sm mt-1">Acesse sua plataforma de gestão</p>
         </div>
 
         <div className="card p-8">
@@ -67,7 +67,7 @@ export function TrainerLogin() {
               {...register('password')}
             />
             {errors.root && (
-              <p className="text-sm text-red-600 bg-red-50 border border-red-100 rounded-lg px-3 py-2">
+              <p className="text-sm text-destructive bg-destructive/10 border border-destructive/20 rounded-lg px-3 py-2">
                 {errors.root.message}
               </p>
             )}
@@ -76,14 +76,14 @@ export function TrainerLogin() {
             </Button>
           </form>
 
-          <p className="text-center text-sm text-gray-500 mt-6">
+          <p className="text-center text-sm text-muted-foreground mt-6">
             Não tem conta?{' '}
-            <Link to="/trainer/register" className="text-primary-600 font-medium hover:underline">
+            <Link to="/trainer/register" className="text-primary font-medium hover:opacity-70">
               Cadastre-se
             </Link>
           </p>
-          <p className="text-center text-sm text-gray-400 mt-2">
-            <Link to="/" className="hover:text-gray-600">← Voltar ao início</Link>
+          <p className="text-center text-sm text-muted-foreground mt-2">
+            <Link to="/" className="hover:text-foreground">← Voltar ao início</Link>
           </p>
         </div>
       </div>

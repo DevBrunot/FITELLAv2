@@ -66,14 +66,14 @@ export function Anamnesis() {
     <div className="space-y-6">
       <div>
         <h1 className="page-title">Anamnese</h1>
-        <p className="text-gray-500 text-sm mt-1">
+        <p className="text-muted-foreground text-sm mt-1">
           Informações de saúde para seu personal personalizar seus treinos
         </p>
       </div>
 
       {existing && (
-        <div className="flex items-center gap-2 bg-green-50 border border-green-200 text-green-700 rounded-xl px-4 py-3 text-sm">
-          <FileText className="h-4 w-4" /> Anamnese já preenchida — você pode atualizá-la abaixo.
+        <div className="flex items-center gap-2 bg-secondary/15 border border-secondary/30 text-secondary rounded-xl px-4 py-3 text-sm">
+          <FileText className="h-4 w-4" strokeWidth={1.5} /> Anamnese já preenchida — você pode atualizá-la abaixo.
         </div>
       )}
 
@@ -82,8 +82,8 @@ export function Anamnesis() {
         <Card padding="md" className="space-y-4">
           <h2 className="section-title">Situação atual</h2>
 
-          <label className="flex items-center gap-2 text-sm text-gray-700 cursor-pointer">
-            <input type="checkbox" className="rounded border-gray-300 text-rose-500" {...register('isPostPartum')} />
+          <label className="flex items-center gap-2 text-sm text-foreground cursor-pointer">
+            <input type="checkbox" className="rounded border-input text-primary accent-primary" {...register('isPostPartum')} />
             Estou no pós-parto
           </label>
 
@@ -116,8 +116,8 @@ export function Anamnesis() {
             </div>
           )}
 
-          <label className="flex items-center gap-2 text-sm text-gray-700 cursor-pointer">
-            <input type="checkbox" className="rounded border-gray-300 text-rose-500" {...register('hasPreviousExerciseHistory')} />
+          <label className="flex items-center gap-2 text-sm text-foreground cursor-pointer">
+            <input type="checkbox" className="rounded border-input text-primary accent-primary" {...register('hasPreviousExerciseHistory')} />
             Já praticava exercícios antes da gestação
           </label>
         </Card>
@@ -148,21 +148,21 @@ export function Anamnesis() {
 
         {/* LGPD */}
         {!existing && (
-          <Card padding="md" className="border-primary-100 bg-primary-50/40">
+          <Card padding="md" className="border-border bg-accent">
             <div className="flex gap-3">
-              <Shield className="h-5 w-5 text-primary-500 shrink-0 mt-0.5" />
+              <Shield className="h-5 w-5 text-primary shrink-0 mt-0.5" strokeWidth={1.5} />
               <div className="space-y-2">
-                <p className="text-sm font-medium text-gray-900">Consentimento LGPD</p>
-                <p className="text-xs text-gray-600">
+                <p className="text-sm font-medium text-foreground">Consentimento LGPD</p>
+                <p className="text-xs text-muted-foreground">
                   Seus dados de saúde serão usados exclusivamente para personalização dos treinos pelo seu personal trainer.
                   Não serão compartilhados com terceiros sem seu consentimento.
                 </p>
-                <label className="flex items-center gap-2 text-sm text-gray-700 cursor-pointer mt-2">
-                  <input type="checkbox" className="rounded border-gray-300 text-primary-600" {...register('lgpdConsent')} />
+                <label className="flex items-center gap-2 text-sm text-foreground cursor-pointer mt-2">
+                  <input type="checkbox" className="rounded border-input text-primary accent-primary" {...register('lgpdConsent')} />
                   Aceito o uso dos meus dados conforme descrito acima
                 </label>
                 {errors.lgpdConsent && (
-                  <p className="text-xs text-red-600">{errors.lgpdConsent.message}</p>
+                  <p className="text-xs text-destructive">{errors.lgpdConsent.message}</p>
                 )}
               </div>
             </div>
@@ -170,7 +170,7 @@ export function Anamnesis() {
         )}
 
         {saveMutation.isSuccess && (
-          <p className="text-sm text-green-600 bg-green-50 border border-green-200 rounded-xl px-4 py-3">
+          <p className="text-sm text-secondary bg-secondary/15 border border-secondary/30 rounded-xl px-4 py-3">
             Anamnese salva com sucesso!
           </p>
         )}
@@ -179,7 +179,7 @@ export function Anamnesis() {
           type="submit"
           size="lg"
           loading={saveMutation.isPending}
-          className="w-full bg-rose-500 hover:bg-rose-600 focus:ring-rose-400"
+          className="w-full"
         >
           {existing ? 'Atualizar anamnese' : 'Enviar anamnese'}
         </Button>

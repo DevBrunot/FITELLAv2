@@ -80,7 +80,7 @@ export function Workouts() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="page-title">Treinos</h1>
-          <p className="text-gray-500 text-sm mt-1">{data?.total ?? 0} treinos</p>
+          <p className="text-muted-foreground text-sm mt-1">{data?.total ?? 0} treinos</p>
         </div>
         <Link to="/trainer/workouts/new">
           <Button className="gap-2">
@@ -90,8 +90,8 @@ export function Workouts() {
       </div>
 
       {!data?.data.length ? (
-        <Card padding="md" className="text-center py-12 text-gray-400">
-          <Dumbbell className="h-10 w-10 mx-auto mb-3 text-gray-300" />
+        <Card padding="md" className="text-center py-12 text-muted-foreground">
+          <Dumbbell className="h-10 w-10 mx-auto mb-3 text-muted" strokeWidth={1.5} />
           Nenhum treino ainda. Crie o primeiro!
         </Card>
       ) : (
@@ -102,12 +102,12 @@ export function Workouts() {
               <Card key={w.id} padding="md" className="flex items-center gap-4">
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 flex-wrap">
-                    <span className="font-medium text-gray-900">{w.title}</span>
+                    <span className="font-medium text-foreground">{w.title}</span>
                     <Badge variant={type.variant}>{type.label}</Badge>
                     {w.isTemplate && <Badge variant="success">Template</Badge>}
                     {w.sentAt && <Badge>Enviado</Badge>}
                   </div>
-                  <div className="text-sm text-gray-500 mt-0.5 flex items-center gap-3">
+                  <div className="text-sm text-muted-foreground mt-0.5 flex items-center gap-3">
                     {w.workoutExercises?.length !== undefined && (
                       <span>{w.workoutExercises.length} exercícios</span>
                     )}
@@ -121,7 +121,7 @@ export function Workouts() {
                     <Button
                       variant="ghost"
                       size="sm"
-                      className="text-primary-600"
+                      className="text-primary"
                       onClick={() => templateMutation.mutate(w.id)}
                       title="Salvar como template"
                     >
@@ -132,7 +132,7 @@ export function Workouts() {
                     <Button
                       variant="ghost"
                       size="sm"
-                      className="text-blue-500"
+                      className="text-secondary"
                       onClick={() => { setSendModalId(w.id); setSelectedStudentIds([]) }}
                       title="Enviar para alunas"
                     >
@@ -142,7 +142,7 @@ export function Workouts() {
                   <Button
                     variant="ghost"
                     size="sm"
-                    className="text-red-400 hover:bg-red-50"
+                    className="text-destructive hover:bg-destructive/10"
                     onClick={() => { if (confirm('Excluir treino?')) deleteMutation.mutate(w.id) }}
                   >
                     <Trash2 className="h-4 w-4" />
@@ -174,7 +174,7 @@ export function Workouts() {
               {approvedStudents.length > 0 && (
                 <button
                   type="button"
-                  className="text-xs text-primary-600 hover:underline"
+                  className="text-xs text-primary hover:underline"
                   onClick={selectAllStudents}
                 >
                   Selecionar todas
@@ -182,15 +182,15 @@ export function Workouts() {
               )}
             </div>
             {approvedStudents.length === 0 ? (
-              <p className="text-sm text-gray-500">Nenhuma aluna aprovada disponível.</p>
+              <p className="text-sm text-muted-foreground">Nenhuma aluna aprovada disponível.</p>
             ) : (
-              <ul className="max-h-56 space-y-2 overflow-y-auto rounded-lg border border-gray-200 p-3">
+              <ul className="max-h-56 space-y-2 overflow-y-auto rounded-lg border border-border p-3">
                 {approvedStudents.map((student) => (
                   <li key={student.value}>
-                    <label className="flex cursor-pointer items-center gap-3 text-sm text-gray-700">
+                    <label className="flex cursor-pointer items-center gap-3 text-sm text-foreground">
                       <input
                         type="checkbox"
-                        className="rounded border-gray-300 text-primary-600"
+                        className="rounded border-input text-primary accent-primary"
                         checked={selectedStudentIds.includes(student.value)}
                         onChange={() => toggleStudent(student.value)}
                       />
@@ -201,7 +201,7 @@ export function Workouts() {
               </ul>
             )}
             {selectedStudentIds.length > 0 && (
-              <p className="mt-2 text-xs text-gray-500">
+              <p className="mt-2 text-xs text-muted-foreground">
                 {selectedStudentIds.length} aluna{selectedStudentIds.length > 1 ? 's' : ''} selecionada{selectedStudentIds.length > 1 ? 's' : ''}
               </p>
             )}

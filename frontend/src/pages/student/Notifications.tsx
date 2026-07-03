@@ -34,7 +34,7 @@ export function StudentNotifications() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="page-title">Notificações</h1>
-          {unreadCount > 0 && <p className="text-sm text-rose-500 mt-1">{unreadCount} não lidas</p>}
+          {unreadCount > 0 && <p className="text-sm text-primary mt-1">{unreadCount} não lidas</p>}
         </div>
         {unreadCount > 0 && (
           <Button
@@ -50,8 +50,8 @@ export function StudentNotifications() {
       </div>
 
       {!data?.data.length ? (
-        <Card padding="md" className="text-center py-12 text-gray-400">
-          <Bell className="h-10 w-10 mx-auto mb-3 text-gray-300" />
+        <Card padding="md" className="text-center py-12 text-muted-foreground">
+          <Bell className="h-10 w-10 mx-auto mb-3 text-muted" strokeWidth={1.5} />
           Nenhuma notificação ainda.
         </Card>
       ) : (
@@ -62,20 +62,20 @@ export function StudentNotifications() {
               padding="md"
               className={cn(
                 'flex items-start gap-3 cursor-pointer transition-colors',
-                !notif.isRead && 'border-rose-200 bg-rose-50/50'
+                !notif.isRead && 'border-primary/30 bg-accent'
               )}
               onClick={() => !notif.isRead && markReadMutation.mutate(notif.id)}
             >
               <div className={cn(
                 'mt-0.5 h-2 w-2 shrink-0 rounded-full',
-                notif.isRead ? 'bg-gray-200' : 'bg-rose-500'
+                notif.isRead ? 'bg-muted' : 'bg-primary'
               )} />
               <div className="flex-1 min-w-0">
-                <p className={cn('text-sm font-medium', notif.isRead ? 'text-gray-700' : 'text-gray-900')}>
+                <p className={cn('text-sm font-medium', notif.isRead ? 'text-muted-foreground' : 'text-foreground')}>
                   {notif.title}
                 </p>
-                <p className="text-sm text-gray-500 mt-0.5">{notif.body}</p>
-                <p className="text-xs text-gray-400 mt-1">
+                <p className="text-sm text-muted-foreground mt-0.5">{notif.body}</p>
+                <p className="text-xs text-muted-foreground/70 mt-1">
                   {format(new Date(notif.createdAt), "d 'de' MMM 'às' HH:mm", { locale: ptBR })}
                 </p>
               </div>

@@ -69,16 +69,16 @@ export function StudentDetail() {
         <Card padding="md">
           <CardHeader><h2 className="section-title">Informações</h2></CardHeader>
           <div className="space-y-3 text-sm">
-            <div className="flex items-center gap-2 text-gray-600">
-              <Mail className="h-4 w-4 text-gray-400" /> {student.email}
+            <div className="flex items-center gap-2 text-muted-foreground">
+              <Mail className="h-4 w-4 text-muted-foreground" strokeWidth={1.5} /> {student.email}
             </div>
             {student.phone && (
-              <div className="flex items-center gap-2 text-gray-600">
-                <Phone className="h-4 w-4 text-gray-400" /> {student.phone}
+              <div className="flex items-center gap-2 text-muted-foreground">
+                <Phone className="h-4 w-4 text-muted-foreground" strokeWidth={1.5} /> {student.phone}
               </div>
             )}
-            <div className="flex items-center gap-2 text-gray-600">
-              <Calendar className="h-4 w-4 text-gray-400" />
+            <div className="flex items-center gap-2 text-muted-foreground">
+              <Calendar className="h-4 w-4 text-muted-foreground" strokeWidth={1.5} />
               Cadastrada em {format(new Date(student.createdAt), "d 'de' MMM 'de' yyyy", { locale: ptBR })}
             </div>
           </div>
@@ -88,9 +88,9 @@ export function StudentDetail() {
           <Card padding="md">
             <CardHeader>
               <h2 className="section-title">Anamnese</h2>
-              <Baby className="h-4 w-4 text-rose-400" />
+              <Baby className="h-4 w-4 text-primary" strokeWidth={1.5} />
             </CardHeader>
-            <div className="space-y-2 text-sm text-gray-600">
+            <div className="space-y-2 text-sm text-muted-foreground">
               {anamnesis.isPostPartum ? (
                 <p>Pós-parto — {anamnesis.weeksPostPartum} semanas</p>
               ) : anamnesis.gestationalWeeks ? (
@@ -102,7 +102,7 @@ export function StudentDetail() {
               {anamnesis.hasPreviousExerciseHistory && <p>✓ Histórico de exercícios anterior</p>}
               {anamnesis.medicalRestrictions && (
                 <div>
-                  <span className="font-medium text-red-600">Restrições:</span>{' '}
+                  <span className="font-medium text-destructive">Restrições:</span>{' '}
                   {anamnesis.medicalRestrictions}
                 </div>
               )}
@@ -110,7 +110,7 @@ export function StudentDetail() {
                 <p>Médico: {anamnesis.doctorName} {anamnesis.doctorPhone && `— ${anamnesis.doctorPhone}`}</p>
               )}
               {anamnesis.healthObservations && (
-                <div className="mt-2 p-2 bg-gray-50 rounded-lg text-gray-500">
+                <div className="mt-2 p-2 bg-muted rounded-lg text-muted-foreground">
                   {anamnesis.healthObservations}
                 </div>
               )}
@@ -120,7 +120,7 @@ export function StudentDetail() {
       </div>
 
       {!anamnesis && (
-        <Card padding="md" className="text-center text-gray-400 py-8">
+        <Card padding="md" className="text-center text-muted-foreground py-8">
           Aluna ainda não preencheu a anamnese.
         </Card>
       )}

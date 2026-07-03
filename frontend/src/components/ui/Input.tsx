@@ -23,8 +23,8 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           className={cn('input', error && 'input-error', className)}
           {...props}
         />
-        {hint && !error && <p className="mt-1 text-xs text-gray-500">{hint}</p>}
-        {error && <p className="mt-1 text-xs text-red-600">{error}</p>}
+        {hint && !error && <p className="mt-1 text-xs text-muted-foreground">{hint}</p>}
+        {error && <p className="mt-1 text-xs text-destructive">{error}</p>}
       </div>
     )
   }

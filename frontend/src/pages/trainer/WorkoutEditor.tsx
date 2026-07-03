@@ -119,8 +119,8 @@ export function WorkoutEditor() {
               <Input label="Título" placeholder="Ex: Treino de força — 2º trimestre" error={errors.title?.message} {...register('title')} />
             </div>
             <Select label="Tipo" options={WORKOUT_TYPES} error={errors.type?.message} {...register('type')} />
-            <label className="flex items-center gap-2 text-sm text-gray-700 cursor-pointer self-end pb-2">
-              <input type="checkbox" className="rounded border-gray-300 text-primary-600" {...register('isTemplate')} />
+            <label className="flex items-center gap-2 text-sm text-foreground cursor-pointer self-end pb-2">
+              <input type="checkbox" className="rounded border-input text-primary accent-primary" {...register('isTemplate')} />
               Salvar como template
             </label>
           </div>
@@ -143,7 +143,7 @@ export function WorkoutEditor() {
           </div>
 
           {fields.length === 0 && (
-            <p className="text-center text-gray-400 py-6">
+            <p className="text-center text-muted-foreground py-6">
               Nenhum exercício adicionado. Clique em "Adicionar".
             </p>
           )}
@@ -152,15 +152,15 @@ export function WorkoutEditor() {
             {fields.map((field, idx) => {
               const useTime = watchedExercises[idx]?.useTime
               return (
-                <div key={field.id} className="border border-gray-100 rounded-xl p-4 space-y-3">
+                <div key={field.id} className="border border-border rounded-xl p-4 space-y-3">
                   <div className="flex items-center gap-2">
-                    <GripVertical className="h-4 w-4 text-gray-300 shrink-0" />
-                    <span className="text-xs font-medium text-gray-400 mr-auto">Exercício {idx + 1}</span>
+                    <GripVertical className="h-4 w-4 text-muted shrink-0" strokeWidth={1.5} />
+                    <span className="text-xs font-medium text-muted-foreground mr-auto">Exercício {idx + 1}</span>
                     <Button
                       type="button"
                       variant="ghost"
                       size="sm"
-                      className="text-red-400 hover:bg-red-50"
+                      className="text-destructive hover:bg-destructive/10"
                       onClick={() => remove(idx)}
                     >
                       <Trash2 className="h-4 w-4" />
@@ -178,8 +178,8 @@ export function WorkoutEditor() {
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                     <Input label="Séries" type="number" min={1} {...register(`exercises.${idx}.sets`)} />
                     <div className="col-span-2 flex items-center gap-2 self-end pb-2">
-                      <label className="flex items-center gap-2 text-sm text-gray-700 cursor-pointer">
-                        <input type="checkbox" className="rounded border-gray-300 text-primary-600" {...register(`exercises.${idx}.useTime`)} />
+                      <label className="flex items-center gap-2 text-sm text-foreground cursor-pointer">
+                        <input type="checkbox" className="rounded border-input text-primary accent-primary" {...register(`exercises.${idx}.useTime`)} />
                         Usar tempo
                       </label>
                     </div>

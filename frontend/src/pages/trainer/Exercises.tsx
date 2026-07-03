@@ -86,7 +86,7 @@ export function Exercises() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="page-title">Exercícios</h1>
-          <p className="text-gray-500 text-sm mt-1">{data?.total ?? 0} exercícios na biblioteca</p>
+          <p className="text-muted-foreground text-sm mt-1">{data?.total ?? 0} exercícios na biblioteca</p>
         </div>
         <Button onClick={openCreate} className="gap-2">
           <Plus className="h-4 w-4" /> Novo exercício
@@ -94,8 +94,8 @@ export function Exercises() {
       </div>
 
       {!data?.data.length ? (
-        <Card padding="md" className="text-center py-12 text-gray-400">
-          <Youtube className="h-10 w-10 mx-auto mb-3 text-gray-300" />
+        <Card padding="md" className="text-center py-12 text-muted-foreground">
+          <Youtube className="h-10 w-10 mx-auto mb-3 text-muted" strokeWidth={1.5} />
           Nenhum exercício ainda. Adicione o primeiro!
         </Card>
       ) : (
@@ -103,19 +103,19 @@ export function Exercises() {
           {data.data.map((ex: Exercise) => (
             <Card key={ex.id} padding="md" className="flex gap-3">
               {/* Thumbnail */}
-              <div className="h-20 w-28 shrink-0 rounded-lg bg-gray-100 overflow-hidden">
+              <div className="h-20 w-28 shrink-0 rounded-lg bg-muted overflow-hidden">
                 {ex.thumbnail ? (
                   <img src={ex.thumbnail} alt={ex.name} className="h-full w-full object-cover" />
                 ) : (
                   <div className="h-full w-full flex items-center justify-center">
-                    <Youtube className="h-6 w-6 text-gray-300" />
+                    <Youtube className="h-6 w-6 text-muted" strokeWidth={1.5} />
                   </div>
                 )}
               </div>
               <div className="flex-1 min-w-0">
                 <div className="flex items-start justify-between gap-2">
                   <div>
-                    <p className="font-medium text-gray-900 text-sm">{ex.name}</p>
+                    <p className="font-medium text-foreground text-sm">{ex.name}</p>
                     <div className="flex gap-1.5 mt-1 flex-wrap">
                       <Badge variant="purple">{CATEGORY_LABELS[ex.category] ?? ex.category}</Badge>
                       {ex.postPartumOnly && <Badge variant="info">Pós-parto</Badge>}
@@ -125,7 +125,7 @@ export function Exercises() {
                     <Button
                       variant="ghost"
                       size="sm"
-                      className="text-red-400 hover:bg-red-50"
+                      className="text-destructive hover:bg-destructive/10"
                       onClick={() => {
                         if (confirm('Excluir exercício?')) deleteMutation.mutate(ex.id)
                       }}
@@ -135,7 +135,7 @@ export function Exercises() {
                   </div>
                 </div>
                 {ex.description && (
-                  <p className="text-xs text-gray-500 mt-1.5 line-clamp-2">{ex.description}</p>
+                  <p className="text-xs text-muted-foreground mt-1.5 line-clamp-2">{ex.description}</p>
                 )}
               </div>
             </Card>
@@ -178,8 +178,8 @@ export function Exercises() {
             error={errors.category?.message}
             {...register('category')}
           />
-          <label className="flex items-center gap-2 text-sm text-gray-700 cursor-pointer">
-            <input type="checkbox" className="rounded border-gray-300 text-primary-600" {...register('postPartumOnly')} />
+          <label className="flex items-center gap-2 text-sm text-foreground cursor-pointer">
+            <input type="checkbox" className="rounded border-input text-primary accent-primary" {...register('postPartumOnly')} />
             Apenas pós-parto
           </label>
           <div className="flex gap-3 justify-end pt-2">

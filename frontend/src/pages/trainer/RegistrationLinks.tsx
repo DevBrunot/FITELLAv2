@@ -63,7 +63,7 @@ export function RegistrationLinks() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="page-title">Links de convite</h1>
-          <p className="text-gray-500 text-sm mt-1">Gere códigos para suas alunas se cadastrarem</p>
+          <p className="text-muted-foreground text-sm mt-1">Gere códigos para suas alunas se cadastrarem</p>
         </div>
         <Button onClick={() => setModalOpen(true)} className="gap-2">
           <Plus className="h-4 w-4" /> Gerar código
@@ -71,8 +71,8 @@ export function RegistrationLinks() {
       </div>
 
       {!data?.data.length ? (
-        <Card padding="md" className="text-center py-12 text-gray-400">
-          <Link2 className="h-10 w-10 mx-auto mb-3 text-gray-300" />
+        <Card padding="md" className="text-center py-12 text-muted-foreground">
+          <Link2 className="h-10 w-10 mx-auto mb-3 text-muted" strokeWidth={1.5} />
           Nenhum link gerado ainda.
         </Card>
       ) : (
@@ -81,7 +81,7 @@ export function RegistrationLinks() {
             <Card key={link.id} padding="md" className="flex items-center gap-4">
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2 mb-1">
-                  <code className="text-lg font-mono font-bold text-primary-600 tracking-widest">
+                  <code className="text-lg font-mono font-bold text-primary tracking-widest">
                     {link.code}
                   </code>
                   <Badge variant={link.isActive ? 'success' : 'default'}>
@@ -91,7 +91,7 @@ export function RegistrationLinks() {
                     {link.linkType === 'permanent' ? 'Permanente' : 'Expirável'}
                   </Badge>
                 </div>
-                <p className="text-xs text-gray-400">
+                <p className="text-xs text-muted-foreground">
                   Criado em {format(new Date(link.createdAt), "d 'de' MMM 'de' yyyy", { locale: ptBR })}
                   {link.expiresAt && ` · Expira em ${format(new Date(link.expiresAt), "d 'de' MMM", { locale: ptBR })}`}
                 </p>
@@ -103,7 +103,7 @@ export function RegistrationLinks() {
                   onClick={() => copyCode(link.code, link.id)}
                   className="gap-1.5 text-xs"
                 >
-                  {copiedId === link.id ? <CheckCheck className="h-3.5 w-3.5 text-green-500" /> : <Copy className="h-3.5 w-3.5" />}
+                  {copiedId === link.id ? <CheckCheck className="h-3.5 w-3.5 text-secondary" /> : <Copy className="h-3.5 w-3.5" />}
                   Código
                 </Button>
                 <Button
@@ -112,13 +112,13 @@ export function RegistrationLinks() {
                   onClick={() => copyLink(link.code, link.id)}
                   className="gap-1.5 text-xs"
                 >
-                  {copiedId === `link-${link.id}` ? <CheckCheck className="h-3.5 w-3.5 text-green-500" /> : <Link2 className="h-3.5 w-3.5" />}
+                  {copiedId === `link-${link.id}` ? <CheckCheck className="h-3.5 w-3.5 text-secondary" /> : <Link2 className="h-3.5 w-3.5" />}
                   Link
                 </Button>
                 <Button
                   variant="ghost"
                   size="sm"
-                  className="text-red-400 hover:bg-red-50"
+                  className="text-destructive hover:bg-destructive/10"
                   onClick={() => { if (confirm('Desativar este código?')) deleteMutation.mutate(link.id) }}
                 >
                   <Trash2 className="h-4 w-4" />

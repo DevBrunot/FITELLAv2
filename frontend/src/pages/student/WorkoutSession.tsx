@@ -64,7 +64,7 @@ export function WorkoutSession() {
         <div>
           <h1 className="page-title">{workout.title}</h1>
           {workout.description && (
-            <p className="text-gray-500 text-sm mt-0.5">{workout.description}</p>
+            <p className="text-muted-foreground text-sm mt-0.5">{workout.description}</p>
           )}
         </div>
       </div>
@@ -74,16 +74,16 @@ export function WorkoutSession() {
         {!isActive ? (
           <Button
             size="lg"
-            className="gap-2 bg-rose-500 hover:bg-rose-600 focus:ring-rose-400"
+            className="gap-2"
             onClick={() => startMutation.mutate()}
             loading={startMutation.isPending}
           >
-            <Play className="h-5 w-5" /> Iniciar treino
+            <Play className="h-5 w-5" strokeWidth={1.5} /> Iniciar treino
           </Button>
         ) : (
           <>
-            <div className="flex items-center gap-2 text-green-600">
-              <div className="h-2 w-2 rounded-full bg-green-500 animate-pulse" />
+            <div className="flex items-center gap-2 text-secondary">
+              <div className="h-2 w-2 rounded-full bg-secondary animate-pulse" />
               <span className="text-sm font-medium">Treino em andamento</span>
             </div>
             <Button
@@ -112,12 +112,12 @@ export function WorkoutSession() {
                 className="flex w-full gap-4 text-left"
                 onClick={() => setExpandedExerciseId(isExpanded ? null : we.id)}
               >
-                <div className="h-20 w-28 shrink-0 rounded-xl bg-gray-100 overflow-hidden">
+                <div className="h-20 w-28 shrink-0 rounded-xl bg-muted overflow-hidden">
                   {we.exercise.thumbnail ? (
                     <img src={we.exercise.thumbnail} alt={we.exercise.name} className="h-full w-full object-cover" />
                   ) : (
                     <div className="h-full flex items-center justify-center">
-                      <Youtube className="h-6 w-6 text-gray-300" />
+                      <Youtube className="h-6 w-6 text-muted" strokeWidth={1.5} />
                     </div>
                   )}
                 </div>
@@ -125,42 +125,42 @@ export function WorkoutSession() {
                 <div className="flex-1 min-w-0">
                   <div className="flex items-start justify-between gap-2">
                     <div>
-                      <span className="text-xs font-medium text-gray-400">#{idx + 1}</span>
-                      <p className="font-semibold text-gray-900">{we.exercise.name}</p>
+                      <span className="text-xs font-medium text-muted-foreground">#{idx + 1}</span>
+                      <p className="font-semibold text-foreground">{we.exercise.name}</p>
                     </div>
-                    <span className="shrink-0 text-gray-400">
-                      {isExpanded ? <ChevronUp className="h-5 w-5" /> : <ChevronDown className="h-5 w-5" />}
+                    <span className="shrink-0 text-muted-foreground">
+                      {isExpanded ? <ChevronUp className="h-5 w-5" strokeWidth={1.5} /> : <ChevronDown className="h-5 w-5" strokeWidth={1.5} />}
                     </span>
                   </div>
 
-                  <div className="flex flex-wrap gap-3 mt-2 text-sm text-gray-600">
+                  <div className="flex flex-wrap gap-3 mt-2 text-sm text-muted-foreground">
                     <span className="flex items-center gap-1">
-                      <RotateCcw className="h-3.5 w-3.5 text-gray-400" />
+                      <RotateCcw className="h-3.5 w-3.5" strokeWidth={1.5} />
                       {we.sets} {we.sets === 1 ? 'série' : 'séries'}
                     </span>
                     {we.useTime ? (
                       <span className="flex items-center gap-1">
-                        <Clock className="h-3.5 w-3.5 text-gray-400" />
+                        <Clock className="h-3.5 w-3.5" strokeWidth={1.5} />
                         {we.timeOn}s por série
                       </span>
                     ) : (
                       <span>{we.reps} repetições</span>
                     )}
                     {we.restSeconds && (
-                      <span className="text-gray-400">{we.restSeconds}s descanso</span>
+                      <span className="text-muted-foreground/70">{we.restSeconds}s descanso</span>
                     )}
                   </div>
                 </div>
               </button>
 
               {isExpanded && (
-                <div className="mt-4 space-y-4 border-t border-gray-100 pt-4">
+                <div className="mt-4 space-y-4 border-t border-border pt-4">
                   {hasVideo && (
                     <ExerciseVideoPlayer exercise={we.exercise} />
                   )}
 
                   {we.notes && (
-                    <p className="text-sm text-primary-700 bg-primary-50 px-3 py-2 rounded-lg">
+                    <p className="text-sm text-accent-foreground bg-accent px-3 py-2 rounded-lg">
                       {we.notes}
                     </p>
                   )}
@@ -191,7 +191,7 @@ export function WorkoutSession() {
               {[1, 2, 3, 4, 5].map((s) => (
                 <button key={s} type="button" onClick={() => setRating(s)}>
                   <Star
-                    className={`h-8 w-8 transition-colors ${s <= rating ? 'text-yellow-400 fill-yellow-400' : 'text-gray-200 fill-gray-200'}`}
+                    className={`h-8 w-8 transition-colors ${s <= rating ? 'text-primary fill-primary' : 'text-muted fill-muted'}`}
                   />
                 </button>
               ))}
@@ -230,7 +230,6 @@ export function WorkoutSession() {
             <Button
               loading={feedbackMutation.isPending}
               onClick={() => feedbackMutation.mutate()}
-              className="bg-rose-500 hover:bg-rose-600 focus:ring-rose-400"
             >
               Enviar feedback
             </Button>

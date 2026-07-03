@@ -28,14 +28,13 @@ export function StudentLayout() {
   }
 
   return (
-    <div className="flex h-screen bg-gray-50">
-      {/* Sidebar */}
-      <aside className="w-64 bg-white border-r border-gray-100 flex flex-col shadow-sm">
-        <div className="flex items-center gap-2.5 px-6 py-5 border-b border-gray-100">
-          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-rose-500">
-            <Heart className="h-5 w-5 text-white fill-white" />
+    <div className="flex h-screen bg-background">
+      <aside className="w-64 bg-card border-r border-border flex flex-col shadow-sm">
+        <div className="flex items-center gap-2.5 px-6 py-5 border-b border-border">
+          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary">
+            <Heart className="h-5 w-5 text-primary-foreground fill-primary-foreground" strokeWidth={1.5} />
           </div>
-          <span className="text-xl font-bold text-gray-900">Fitela</span>
+          <span className="font-display text-xl text-foreground">Fitela</span>
         </div>
 
         <nav className="flex-1 px-3 py-4 space-y-0.5">
@@ -47,15 +46,15 @@ export function StudentLayout() {
                 cn(
                   'flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors',
                   isActive
-                    ? 'bg-rose-50 text-rose-600'
-                    : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
+                    ? 'bg-accent text-accent-foreground'
+                    : 'text-muted-foreground hover:bg-muted hover:text-foreground'
                 )
               }
             >
-              <Icon className="h-[18px] w-[18px] shrink-0" />
+              <Icon className="h-[18px] w-[18px] shrink-0" strokeWidth={1.5} />
               <span>{label}</span>
               {label === 'Notificações' && unreadCount > 0 && (
-                <span className="ml-auto flex h-5 w-5 items-center justify-center rounded-full bg-rose-500 text-[10px] font-bold text-white">
+                <span className="ml-auto flex h-5 w-5 items-center justify-center rounded-full bg-primary text-[10px] font-bold text-primary-foreground">
                   {unreadCount > 9 ? '9+' : unreadCount}
                 </span>
               )}
@@ -63,21 +62,21 @@ export function StudentLayout() {
           ))}
         </nav>
 
-        <div className="border-t border-gray-100 p-3">
+        <div className="border-t border-border p-3">
           <div className="flex items-center gap-3 px-3 py-2 rounded-lg">
-            <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-rose-100 text-rose-600 font-semibold text-sm">
+            <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-accent text-accent-foreground font-semibold text-sm">
               {user?.email.charAt(0).toUpperCase()}
             </div>
             <div className="flex-1 min-w-0">
-              <p className="text-sm font-medium text-gray-900 truncate">{user?.email}</p>
-              <p className="text-xs text-gray-500">Aluna</p>
+              <p className="text-sm font-medium text-foreground truncate">{user?.email}</p>
+              <p className="text-xs text-muted-foreground">Aluna</p>
             </div>
             <button
               onClick={handleLogout}
-              className="shrink-0 rounded-lg p-1.5 text-gray-400 hover:bg-gray-100 transition-colors"
+              className="shrink-0 rounded-lg p-1.5 text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
               title="Sair"
             >
-              <LogOut className="h-4 w-4" />
+              <LogOut className="h-4 w-4" strokeWidth={1.5} />
             </button>
           </div>
         </div>

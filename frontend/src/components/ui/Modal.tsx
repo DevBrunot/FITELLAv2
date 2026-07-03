@@ -36,18 +36,18 @@ export function Modal({ open, onClose, title, children, size = 'md' }: ModalProp
       />
       <div
         className={cn(
-          'relative w-full bg-white rounded-2xl shadow-xl animate-in fade-in zoom-in-95 duration-200',
+          'relative w-full bg-card rounded-2xl shadow-xl animate-in fade-in zoom-in-95 duration-200',
           sizes[size]
         )}
         role="dialog"
         aria-modal="true"
       >
         {title && (
-          <div className="flex items-center justify-between border-b border-gray-100 px-6 py-4">
-            <h2 className="text-lg font-semibold text-gray-900">{title}</h2>
+          <div className="flex items-center justify-between border-b border-border px-6 py-4">
+            <h2 className="font-display text-lg text-foreground">{title}</h2>
             <button
               onClick={onClose}
-              className="rounded-lg p-1.5 text-gray-400 hover:bg-gray-100 hover:text-gray-600 transition-colors"
+              className="rounded-lg p-1.5 text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
               aria-label="Fechar"
             >
               <X className="h-5 w-5" />

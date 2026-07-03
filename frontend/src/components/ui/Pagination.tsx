@@ -14,7 +14,7 @@ export function Pagination({ page, total, limit, onChange }: PaginationProps) {
 
   return (
     <div className="flex items-center justify-between mt-4">
-      <p className="text-sm text-gray-500">
+      <p className="text-sm text-muted-foreground">
         {(page - 1) * limit + 1}–{Math.min(page * limit, total)} de {total}
       </p>
       <div className="flex gap-2">

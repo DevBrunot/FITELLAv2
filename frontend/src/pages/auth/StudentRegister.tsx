@@ -59,14 +59,14 @@ export function StudentRegister() {
   })
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-rose-50 to-white flex items-center justify-center p-4">
+    <div className="min-h-screen bg-background flex items-center justify-center p-4">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
-          <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-rose-500 mb-4">
-            <Heart className="h-6 w-6 text-white fill-white" />
+          <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-primary mb-4">
+            <Heart className="h-6 w-6 text-primary-foreground fill-primary-foreground" strokeWidth={1.5} />
           </div>
-          <h1 className="text-2xl font-bold text-gray-900">Criar conta de Aluna</h1>
-          <p className="text-gray-500 text-sm mt-1">Você precisa de um código de convite do seu personal</p>
+          <h1 className="font-display text-2xl text-foreground">Criar conta de Aluna</h1>
+          <p className="text-muted-foreground text-sm mt-1">Você precisa de um código de convite do seu personal</p>
         </div>
 
         <div className="card p-8">
@@ -79,24 +79,19 @@ export function StudentRegister() {
             <Input label="Confirmar senha" type="password" placeholder="••••••••" error={errors.confirmPassword?.message} {...register('confirmPassword')} />
 
             {errors.root && (
-              <p className="text-sm text-red-600 bg-red-50 border border-red-100 rounded-lg px-3 py-2">
+              <p className="text-sm text-destructive bg-destructive/10 border border-destructive/20 rounded-lg px-3 py-2">
                 {errors.root.message}
               </p>
             )}
 
-            <Button
-              type="submit"
-              loading={mutation.isPending}
-              className="w-full bg-rose-500 hover:bg-rose-600 focus:ring-rose-400"
-              size="lg"
-            >
+            <Button type="submit" loading={mutation.isPending} className="w-full" size="lg">
               Criar conta
             </Button>
           </form>
 
-          <p className="text-center text-sm text-gray-500 mt-6">
+          <p className="text-center text-sm text-muted-foreground mt-6">
             Já tem conta?{' '}
-            <Link to="/student/login" className="text-rose-600 font-medium hover:underline">
+            <Link to="/student/login" className="text-primary font-medium hover:opacity-70">
               Entrar
             </Link>
           </p>
