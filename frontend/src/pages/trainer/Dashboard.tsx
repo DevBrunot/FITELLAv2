@@ -61,14 +61,14 @@ export function Dashboard() {
         <p className="text-sm capitalize text-muted-foreground mt-1">{today}</p>
       </div>
 
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
         {statCards.map(({ label, value, icon: Icon, color }) => (
           <Card key={label} padding="md" className="border-border shadow-sm">
-            <div className={`inline-flex h-10 w-10 items-center justify-center rounded-xl ${color} mb-3`}>
-              <Icon className="h-5 w-5" strokeWidth={1.5} />
+            <div className={`inline-flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-xl ${color} mb-2 sm:mb-3`}>
+              <Icon className="h-4 w-4 sm:h-5 sm:w-5" strokeWidth={1.5} />
             </div>
-            <p className="text-2xl font-semibold text-foreground">{value}</p>
-            <p className="text-sm text-muted-foreground mt-0.5">{label}</p>
+            <p className="text-xl sm:text-2xl font-semibold text-foreground">{value}</p>
+            <p className="text-xs sm:text-sm text-muted-foreground mt-0.5">{label}</p>
           </Card>
         ))}
       </div>
@@ -106,7 +106,7 @@ export function Dashboard() {
 
       <div>
         <p className="eyebrow mb-3 !text-muted-foreground">Acesso rápido</p>
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-3">
           {quickActions.map((a) => (
             <Link
               key={a.title}

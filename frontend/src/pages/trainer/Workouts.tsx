@@ -77,13 +77,13 @@ export function Workouts() {
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between">
+      <div className="page-header">
         <div>
           <h1 className="page-title">Treinos</h1>
           <p className="text-muted-foreground text-sm mt-1">{data?.total ?? 0} treinos</p>
         </div>
-        <Link to="/trainer/workouts/new">
-          <Button className="gap-2">
+        <Link to="/trainer/workouts/new" className="w-full sm:w-auto">
+          <Button className="gap-2 w-full sm:w-auto">
             <Plus className="h-4 w-4" /> Novo treino
           </Button>
         </Link>
@@ -99,7 +99,7 @@ export function Workouts() {
           {data.data.map((w: Workout) => {
             const type = TYPE_MAP[w.type] ?? { label: w.type, variant: 'default' as const }
             return (
-              <Card key={w.id} padding="md" className="flex items-center gap-4">
+              <Card key={w.id} padding="md" className="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 flex-wrap">
                     <span className="font-medium text-foreground">{w.title}</span>
@@ -107,7 +107,7 @@ export function Workouts() {
                     {w.isTemplate && <Badge variant="success">Template</Badge>}
                     {w.sentAt && <Badge>Enviado</Badge>}
                   </div>
-                  <div className="text-sm text-muted-foreground mt-0.5 flex items-center gap-3">
+                  <div className="text-sm text-muted-foreground mt-0.5 flex flex-wrap items-center gap-x-3 gap-y-1">
                     {w.workoutExercises?.length !== undefined && (
                       <span>{w.workoutExercises.length} exercícios</span>
                     )}
@@ -116,7 +116,7 @@ export function Workouts() {
                     <span>{format(new Date(w.createdAt), "d MMM", { locale: ptBR })}</span>
                   </div>
                 </div>
-                <div className="flex items-center gap-1.5 shrink-0">
+                <div className="flex items-center gap-1.5 shrink-0 self-end sm:self-auto">
                   {!w.isTemplate && (
                     <Button
                       variant="ghost"
@@ -206,12 +206,13 @@ export function Workouts() {
               </p>
             )}
           </div>
-          <div className="flex gap-3 justify-end">
-            <Button variant="secondary" onClick={closeSendModal}>Cancelar</Button>
+          <div className="flex flex-col-reverse gap-2 sm:flex-row sm:justify-end sm:gap-3">
+            <Button variant="secondary" onClick={closeSendModal} className="w-full sm:w-auto">Cancelar</Button>
             <Button
               disabled={selectedStudentIds.length === 0}
               loading={sendMutation.isPending}
               onClick={() => sendModalId && sendMutation.mutate({ id: sendModalId, studentIds: selectedStudentIds })}
+              className="w-full sm:w-auto"
             >
               <Send className="h-4 w-4" /> Enviar
             </Button>

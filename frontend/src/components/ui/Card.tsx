@@ -6,7 +6,7 @@ interface CardProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 export function Card({ className, padding = 'md', children, ...props }: CardProps) {
-  const paddings = { none: '', sm: 'p-4', md: 'p-6', lg: 'p-8' }
+  const paddings = { none: '', sm: 'p-3 sm:p-4', md: 'p-4 sm:p-6', lg: 'p-5 sm:p-8' }
   return (
     <div className={cn('card', paddings[padding], className)} {...props}>
       {children}

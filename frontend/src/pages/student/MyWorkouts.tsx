@@ -39,16 +39,16 @@ export function MyWorkouts() {
         <div className="space-y-3">
           {data.data.map((w) => (
             <Link key={w.id} to={`/student/workouts/${w.id}`}>
-              <Card padding="md" className="flex items-center gap-4 hover:border-border hover:shadow-md transition-all cursor-pointer">
-                <div className="h-12 w-12 shrink-0 flex items-center justify-center rounded-2xl bg-accent text-primary">
-                  <Dumbbell className="h-6 w-6" strokeWidth={1.5} />
+              <Card padding="md" className="flex items-center gap-3 sm:gap-4 hover:border-border hover:shadow-md transition-all cursor-pointer">
+                <div className="h-11 w-11 sm:h-12 sm:w-12 shrink-0 flex items-center justify-center rounded-2xl bg-accent text-primary">
+                  <Dumbbell className="h-5 w-5 sm:h-6 sm:w-6" strokeWidth={1.5} />
                 </div>
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 flex-wrap">
                     <span className="font-semibold text-foreground">{w.title}</span>
                     <Badge variant="default">{TYPE_MAP[w.type] ?? w.type}</Badge>
                   </div>
-                  <div className="flex items-center gap-3 mt-0.5 text-sm text-muted-foreground">
+                  <div className="flex flex-wrap items-center gap-x-3 gap-y-1 mt-0.5 text-sm text-muted-foreground">
                     {w.workoutExercises?.length !== undefined && (
                       <span className="flex items-center gap-1">
                         <CheckCircle className="h-3.5 w-3.5" />

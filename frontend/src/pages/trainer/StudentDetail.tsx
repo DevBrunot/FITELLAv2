@@ -44,21 +44,21 @@ export function StudentDetail() {
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center gap-3">
-        <Link to="/trainer/students">
+      <div className="flex flex-wrap items-start gap-2 sm:items-center sm:gap-3">
+        <Link to="/trainer/students" className="shrink-0">
           <Button variant="ghost" size="sm"><ArrowLeft className="h-4 w-4" /></Button>
         </Link>
-        <h1 className="page-title">{student.name}</h1>
+        <h1 className="page-title break-words min-w-0">{student.name}</h1>
         <Badge variant={status.variant}>{status.label}</Badge>
       </div>
 
       {/* Actions */}
       {student.status === 'pending' && (
-        <div className="flex gap-3">
-          <Button onClick={() => approveMutation.mutate()} loading={approveMutation.isPending} className="gap-2">
+        <div className="flex flex-col gap-2 sm:flex-row sm:gap-3">
+          <Button onClick={() => approveMutation.mutate()} loading={approveMutation.isPending} className="gap-2 w-full sm:w-auto">
             <UserCheck className="h-4 w-4" /> Aprovar aluna
           </Button>
-          <Button variant="danger" onClick={() => rejectMutation.mutate()} loading={rejectMutation.isPending} className="gap-2">
+          <Button variant="danger" onClick={() => rejectMutation.mutate()} loading={rejectMutation.isPending} className="gap-2 w-full sm:w-auto">
             <UserX className="h-4 w-4" /> Rejeitar
           </Button>
         </div>

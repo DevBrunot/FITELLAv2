@@ -129,14 +129,14 @@ export function WorkoutEditor() {
 
         {/* Exercises */}
         <Card padding="md" className="space-y-4">
-          <div className="flex items-center justify-between">
+          <div className="page-header">
             <h2 className="section-title">Exercícios</h2>
             <Button
               type="button"
               variant="secondary"
               size="sm"
               onClick={() => append({ exerciseId: '', sets: 1, useTime: false })}
-              className="gap-2"
+              className="gap-2 w-full sm:w-auto"
             >
               <Plus className="h-4 w-4" /> Adicionar
             </Button>
@@ -198,11 +198,11 @@ export function WorkoutEditor() {
           </div>
         </Card>
 
-        <div className="flex justify-end gap-3">
-          <Link to="/trainer/workouts">
-            <Button variant="secondary">Cancelar</Button>
+        <div className="flex flex-col-reverse gap-2 sm:flex-row sm:justify-end sm:gap-3">
+          <Link to="/trainer/workouts" className="w-full sm:w-auto">
+            <Button variant="secondary" className="w-full sm:w-auto">Cancelar</Button>
           </Link>
-          <Button type="submit" loading={saveMutation.isPending} size="lg">
+          <Button type="submit" loading={saveMutation.isPending} size="lg" className="w-full sm:w-auto">
             {isEditing ? 'Salvar alterações' : 'Criar treino'}
           </Button>
         </div>

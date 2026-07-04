@@ -73,24 +73,26 @@ export function Students() {
           {filtered.map((student: Student) => {
             const status = STATUS_MAP[student.status]
             return (
-              <Card key={student.id} padding="md" className="flex items-center gap-4">
-                <div className="h-10 w-10 shrink-0 rounded-full bg-accent flex items-center justify-center text-accent-foreground font-semibold">
-                  {student.name.charAt(0)}
-                </div>
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-2">
-                    <span className="font-medium text-foreground">{student.name}</span>
-                    <Badge variant={status.variant}>{status.label}</Badge>
+              <Card key={student.id} padding="md" className="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">
+                <div className="flex items-center gap-3 min-w-0 flex-1">
+                  <div className="h-10 w-10 shrink-0 rounded-full bg-accent flex items-center justify-center text-accent-foreground font-semibold">
+                    {student.name.charAt(0)}
                   </div>
-                  <p className="text-sm text-muted-foreground truncate">{student.email}</p>
+                  <div className="flex-1 min-w-0">
+                    <div className="flex flex-wrap items-center gap-2">
+                      <span className="font-medium text-foreground">{student.name}</span>
+                      <Badge variant={status.variant}>{status.label}</Badge>
+                    </div>
+                    <p className="text-sm text-muted-foreground truncate">{student.email}</p>
+                  </div>
                 </div>
-                <div className="flex items-center gap-2 shrink-0">
+                <div className="flex items-center gap-2 shrink-0 sm:self-auto">
                   {student.status === 'pending' && (
                     <>
                       <Button
                         variant="ghost"
                         size="sm"
-                        className="text-secondary hover:bg-secondary/10"
+                        className="flex-1 sm:flex-none text-secondary hover:bg-secondary/10"
                         loading={approveMutation.isPending && approveMutation.variables === student.id}
                         onClick={() => approveMutation.mutate(student.id)}
                       >
@@ -99,7 +101,7 @@ export function Students() {
                       <Button
                         variant="ghost"
                         size="sm"
-                        className="text-destructive hover:bg-destructive/10"
+                        className="flex-1 sm:flex-none text-destructive hover:bg-destructive/10"
                         loading={rejectMutation.isPending && rejectMutation.variables === student.id}
                         onClick={() => rejectMutation.mutate(student.id)}
                       >
@@ -107,7 +109,7 @@ export function Students() {
                       </Button>
                     </>
                   )}
-                  <Link to={`/trainer/students/${student.id}`}>
+                  <Link to={`/trainer/students/${student.id}`} className="ml-auto sm:ml-0">
                     <Button variant="ghost" size="sm">
                       <ChevronRight className="h-4 w-4" />
                     </Button>

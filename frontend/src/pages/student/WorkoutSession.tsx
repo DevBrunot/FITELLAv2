@@ -57,12 +57,12 @@ export function WorkoutSession() {
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center gap-3">
-        <Link to="/student/workouts">
+      <div className="flex items-start gap-2 sm:items-center sm:gap-3">
+        <Link to="/student/workouts" className="shrink-0 mt-0.5">
           <Button variant="ghost" size="sm"><ArrowLeft className="h-4 w-4" /></Button>
         </Link>
-        <div>
-          <h1 className="page-title">{workout.title}</h1>
+        <div className="min-w-0">
+          <h1 className="page-title break-words">{workout.title}</h1>
           {workout.description && (
             <p className="text-muted-foreground text-sm mt-0.5">{workout.description}</p>
           )}
@@ -70,11 +70,11 @@ export function WorkoutSession() {
       </div>
 
       {/* Start / Finish */}
-      <Card padding="md" className="flex items-center gap-4">
+      <Card padding="md" className="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">
         {!isActive ? (
           <Button
             size="lg"
-            className="gap-2"
+            className="gap-2 w-full sm:w-auto"
             onClick={() => startMutation.mutate()}
             loading={startMutation.isPending}
           >
@@ -89,7 +89,7 @@ export function WorkoutSession() {
             <Button
               size="lg"
               variant="secondary"
-              className="gap-2 ml-auto"
+              className="gap-2 w-full sm:ml-auto sm:w-auto"
               onClick={() => finishMutation.mutate()}
               loading={finishMutation.isPending}
             >
@@ -109,10 +109,10 @@ export function WorkoutSession() {
             <Card key={we.id} padding="md" className="overflow-hidden">
               <button
                 type="button"
-                className="flex w-full gap-4 text-left"
+                className="flex w-full gap-3 sm:gap-4 text-left"
                 onClick={() => setExpandedExerciseId(isExpanded ? null : we.id)}
               >
-                <div className="h-20 w-28 shrink-0 rounded-xl bg-muted overflow-hidden">
+                <div className="h-16 w-20 sm:h-20 sm:w-28 shrink-0 rounded-xl bg-muted overflow-hidden">
                   {we.exercise.thumbnail ? (
                     <img src={we.exercise.thumbnail} alt={we.exercise.name} className="h-full w-full object-cover" />
                   ) : (
@@ -225,11 +225,12 @@ export function WorkoutSession() {
             rows={2}
           />
 
-          <div className="flex gap-3 justify-end">
-            <Button variant="ghost" onClick={() => setFeedbackModal(false)}>Pular</Button>
+          <div className="flex flex-col-reverse gap-2 sm:flex-row sm:justify-end sm:gap-3">
+            <Button variant="ghost" onClick={() => setFeedbackModal(false)} className="w-full sm:w-auto">Pular</Button>
             <Button
               loading={feedbackMutation.isPending}
               onClick={() => feedbackMutation.mutate()}
+              className="w-full sm:w-auto"
             >
               Enviar feedback
             </Button>

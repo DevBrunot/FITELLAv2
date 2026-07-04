@@ -60,12 +60,12 @@ export function RegistrationLinks() {
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between">
+      <div className="page-header">
         <div>
           <h1 className="page-title">Links de convite</h1>
           <p className="text-muted-foreground text-sm mt-1">Gere códigos para suas alunas se cadastrarem</p>
         </div>
-        <Button onClick={() => setModalOpen(true)} className="gap-2">
+        <Button onClick={() => setModalOpen(true)} className="gap-2 w-full sm:w-auto">
           <Plus className="h-4 w-4" /> Gerar código
         </Button>
       </div>
@@ -78,10 +78,10 @@ export function RegistrationLinks() {
       ) : (
         <div className="space-y-3">
           {data.data.map((link) => (
-            <Card key={link.id} padding="md" className="flex items-center gap-4">
+            <Card key={link.id} padding="md" className="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">
               <div className="flex-1 min-w-0">
-                <div className="flex items-center gap-2 mb-1">
-                  <code className="text-lg font-mono font-bold text-primary tracking-widest">
+                <div className="flex flex-wrap items-center gap-2 mb-1">
+                  <code className="text-base sm:text-lg font-mono font-bold text-primary tracking-widest break-all">
                     {link.code}
                   </code>
                   <Badge variant={link.isActive ? 'success' : 'default'}>
@@ -96,7 +96,7 @@ export function RegistrationLinks() {
                   {link.expiresAt && ` · Expira em ${format(new Date(link.expiresAt), "d 'de' MMM", { locale: ptBR })}`}
                 </p>
               </div>
-              <div className="flex gap-1.5 shrink-0">
+              <div className="flex flex-wrap gap-1.5 shrink-0">
                 <Button
                   variant="secondary"
                   size="sm"
@@ -152,9 +152,9 @@ export function RegistrationLinks() {
               onChange={(e) => setExpiresInDays(e.target.value)}
             />
           )}
-          <div className="flex gap-3 justify-end">
-            <Button variant="secondary" onClick={() => setModalOpen(false)}>Cancelar</Button>
-            <Button loading={createMutation.isPending} onClick={() => createMutation.mutate()}>
+          <div className="flex flex-col-reverse gap-2 sm:flex-row sm:justify-end sm:gap-3">
+            <Button variant="secondary" onClick={() => setModalOpen(false)} className="w-full sm:w-auto">Cancelar</Button>
+            <Button loading={createMutation.isPending} onClick={() => createMutation.mutate()} className="w-full sm:w-auto">
               Gerar código
             </Button>
           </div>

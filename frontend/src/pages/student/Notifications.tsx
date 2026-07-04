@@ -31,7 +31,7 @@ export function StudentNotifications() {
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between">
+      <div className="page-header">
         <div>
           <h1 className="page-title">Notificações</h1>
           {unreadCount > 0 && <p className="text-sm text-primary mt-1">{unreadCount} não lidas</p>}
@@ -42,7 +42,7 @@ export function StudentNotifications() {
             size="sm"
             loading={markAllMutation.isPending}
             onClick={() => markAllMutation.mutate()}
-            className="gap-2"
+            className="gap-2 w-full sm:w-auto"
           >
             <CheckCheck className="h-4 w-4" /> Marcar todas como lidas
           </Button>

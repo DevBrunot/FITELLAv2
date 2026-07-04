@@ -102,11 +102,15 @@
   }
 
   .page-title {
-    @apply font-display text-2xl text-foreground;
+    @apply font-display text-xl sm:text-2xl text-foreground;
   }
 
   .section-title {
-    @apply font-display text-lg text-foreground;
+    @apply font-display text-base sm:text-lg text-foreground;
+  }
+
+  .page-header {
+    @apply flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between;
   }
 }
 
@@ -121,5 +125,9 @@
   .scrollbar-thin::-webkit-scrollbar-thumb {
     background-color: hsl(var(--border));
     border-radius: 9999px;
+  }
+
+  .safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom, 0px);
   }
 }

@@ -83,12 +83,12 @@ export function Exercises() {
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between">
+      <div className="page-header">
         <div>
           <h1 className="page-title">Exercícios</h1>
           <p className="text-muted-foreground text-sm mt-1">{data?.total ?? 0} exercícios na biblioteca</p>
         </div>
-        <Button onClick={openCreate} className="gap-2">
+        <Button onClick={openCreate} className="gap-2 w-full sm:w-auto">
           <Plus className="h-4 w-4" /> Novo exercício
         </Button>
       </div>
@@ -103,7 +103,7 @@ export function Exercises() {
           {data.data.map((ex: Exercise) => (
             <Card key={ex.id} padding="md" className="flex gap-3">
               {/* Thumbnail */}
-              <div className="h-20 w-28 shrink-0 rounded-lg bg-muted overflow-hidden">
+              <div className="h-16 w-20 sm:h-20 sm:w-28 shrink-0 rounded-lg bg-muted overflow-hidden">
                 {ex.thumbnail ? (
                   <img src={ex.thumbnail} alt={ex.name} className="h-full w-full object-cover" />
                 ) : (
@@ -182,11 +182,11 @@ export function Exercises() {
             <input type="checkbox" className="rounded border-input text-primary accent-primary" {...register('postPartumOnly')} />
             Apenas pós-parto
           </label>
-          <div className="flex gap-3 justify-end pt-2">
-            <Button type="button" variant="secondary" onClick={() => { setModalOpen(false); reset() }}>
+          <div className="flex flex-col-reverse gap-2 pt-2 sm:flex-row sm:justify-end sm:gap-3">
+            <Button type="button" variant="secondary" className="w-full sm:w-auto" onClick={() => { setModalOpen(false); reset() }}>
               Cancelar
             </Button>
-            <Button type="submit" loading={createMutation.isPending}>
+            <Button type="submit" loading={createMutation.isPending} className="w-full sm:w-auto">
               {editingId ? 'Salvar' : 'Criar exercício'}
             </Button>
           </div>
